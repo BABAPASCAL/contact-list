@@ -59,3 +59,47 @@ class ContactsExploreApp(tk.Tk):
 
         self.delete_contact_button = tk.Button(self.delete_contact_frame, text="Delete Contact", command=self.delete_contact, bg="black", fg="white")
         self.delete_contact_button.pack(pady=5)
+
+def add_contact(self):
+    add_contact_window = tk.Toplevel(self)
+    add_contact_window.title("Add Contact")
+    add_contact_window.geometry("300x150")
+    add_contact_window.configure(bg="black")
+
+    name_label = tk.Label(add_contact_window, text="Name:", bg="black", fg="white")
+
+
+name_label.pack(pady=5)
+name_entry = tk.Entry(add_contact_window)
+name_entry.pack(pady=5)
+
+phone_label = tk.Label(add_contact_window, text="Phone:", bg="black", fg="white")
+phone_label.pack(pady=5)
+phone_entry = tk.Entry(add_contact_window)
+phone_entry.pack(pady=5)
+
+save_button = tk.Button(add_contact_window, text="Save",
+                        command=lambda: self.save_contact(name_entry.get(), phone_entry.get(), add_contact_window),
+                        bg="black", fg="white")
+save_button.pack(pady=5)
+
+
+def save_contact(self, name, phone, window):
+    self.contacts[name] = phone
+    window.destroy()
+
+
+def search_contact(self):
+    search_contact_window = tk.Toplevel(self)
+    search_contact_window.title("Search Contact")
+    search_contact_window.geometry("300x100")
+    search_contact_window.configure(bg="black")
+
+    search_label = tk.Label(search_contact_window, text="Search Name:", bg="black", fg="white")
+    search_label.pack(pady=5)
+    search_entry = tk.Entry(search_contact_window)
+    search_entry.pack(pady=5)
+
+    search_button = tk.Button(search_contact_window, text="Search",
+                              command=lambda: self.display_search_result(search_entry.get()), bg="black", fg="white")
+    search_button.pack(pady=5)
