@@ -103,3 +103,53 @@ def search_contact(self):
     search_button = tk.Button(search_contact_window, text="Search",
                               command=lambda: self.display_search_result(search_entry.get()), bg="black", fg="white")
     search_button.pack(pady=5)
+
+    def display_search_result(self, search_name):
+        if name in self.contacts:
+            self.contacts[name] = phone
+            window.destroy()
+            self.display_contacts()
+        else:
+            not_found_window = tk.Toplevel(self)
+            not_found_window.title("Update Result")
+            not_found_window.geometry("200x100")
+            not_found_window.configure(bg="black")
+
+            not_found_label = tk.Label(not_found_window, text="Name is not found in the contact book", bg="black", fg="white")
+            not_found_label.pack(pady=20)
+
+    def delete_contact(self):
+        delete_contact_window = tk.Toplevel(self)
+        delete_contact_window.title("Delete Contact")
+        delete_contact_window.geometry("300x100")
+        delete_contact_window.configure(bg="black")
+
+        delete_label = tk.Label(delete_contact_window, text="Name:", bg="black", fg="white")
+        delete_label.pack(pady=5)
+        delete_entry = tk.Entry(delete_contact_window)
+        delete_entry.pack(pady=5)
+
+        delete_button = tk.Button(delete_contact_window, text="Delete", command=lambda: self.remove_contact(delete_entry.get(), delete_contact_window), bg="black", fg="white")
+        delete_button.pack(pady=5)
+
+    def remove_contact(self, name, window):
+        if name in self.contacts:
+            del self.contacts[name]
+            window.destroy()
+            self.display_contacts()
+        else:
+            not_found_window = tk.Toplevel(self)
+            not_found_window.title("Delete Result")
+            not_found_window.geometry("200x100")
+            not_found_window.configure(bg="black")
+
+            not_found_label = tk.Label(not_found_window, text="Name is not found in the contact book", bg="black", fg="white")
+            not_found_label.pack(pady=20)
+
+
+if __name__ == "__main__":
+    def start_app():
+        app_cover.destroy()
+        contacts_explore_app = ContactsExploreApp()
+        contacts_explore_app.mainloop()
+
